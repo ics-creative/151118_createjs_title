@@ -62,9 +62,7 @@ export class MainBase {
     // Tickerを作成
     if (matchMedia && matchMedia('(prefers-reduced-motion)').matches) {
       // 演出しない
-      setTimeout(() => {
-        this.handleTick();
-      }, 100);
+      this.handleTick();
     } else {
       // 通常
       createjs.Ticker.framerate  = 60;
