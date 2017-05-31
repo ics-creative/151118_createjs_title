@@ -130,8 +130,8 @@ class ParticleEmitter extends Emitter {
   /**
    * @constructor
    * @param numParticles 1フレーム間に発生させる Particle 数
-   * @param vx
-   * @param vy
+   * @param startVx
+   * @param startVy
    */
   constructor(private numParticles: number, private startVx: number, private startVy: number) {
     super();
@@ -196,7 +196,7 @@ class ParticleEmitter extends Emitter {
 
   /**
    * パーティクルを削除します。
-   * @param {Particle} particle
+   * @param {Particle} p
    * @method
    */
   public removeParticle(p: Particle) {
@@ -346,8 +346,8 @@ class Particle extends createjs.Shape {
 
     this._count++;
 
-    var maxD: number    = (1 - this._count / this.life);
-    var sizeNew: number = (1 - this._count / this.life * this.vSize);
+    const maxD: number    = (1 - this._count / this.life);
+    const sizeNew: number = (1 - this._count / this.life * this.vSize);
 
     this.alpha  = Math.random() * 0.3 + this.baseAlpha * maxD;
     this.scaleX = this.scaleY = sizeNew;

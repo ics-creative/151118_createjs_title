@@ -21,15 +21,11 @@ export class MainBase {
 
 
     // パーティクルサンプルを作成
-    var sample = new ParticleContainer(emitPerFrame);
+    const sample = new ParticleContainer(emitPerFrame);
     this.stageBase.addChild(sample);
 
-    // Tickerを作成
-    createjs.Ticker.setFPS(60);
-    createjs.Ticker.timingMode = createjs.Ticker.RAF;
-    createjs.Ticker.on('tick', this.handleTick, this);
 
-    var stageOverlay  = new createjs.Stage('canvasOverlay');
+    const stageOverlay  = new createjs.Stage('canvasOverlay');
     this.stageOverlay = stageOverlay;
 
     this.stageOverlay.nextStage = this.stageBase;
@@ -47,7 +43,7 @@ export class MainBase {
     this.stageCalcInside.autoClear = false;
 
     // パーティクルサンプルを作成
-    var crossGraphicsContainer = new CrossGraphicsContainer();
+    const crossGraphicsContainer = new CrossGraphicsContainer();
     this.stageCalcInside.addChild(crossGraphicsContainer);
 
     this.buildUi();
@@ -62,6 +58,19 @@ export class MainBase {
     setTimeout(() => {
       this.handleResize();
     }, 100);
+
+    // Tickerを作成
+    if (matchMedia && matchMedia('(prefers-reduced-motion)').matches) {
+      // 演出しない
+      setTimeout(() => {
+        this.handleTick();
+      }, 100);
+    } else {
+      // 通常
+      createjs.Ticker.framerate  = 60;
+      createjs.Ticker.timingMode = createjs.Ticker.RAF;
+      createjs.Ticker.on('tick', this.handleTick, this);
+    }
   }
 
   protected buildUi(): void {
@@ -77,7 +86,6 @@ export class MainBase {
 
     // create residual image effect
     this.stageBase.update();
-
 
     const canvas      = (<HTMLCanvasElement> this.stageCalcInside.canvas);
     const context     = canvas.getContext('2d');
@@ -99,5 +107,7 @@ export class MainBase {
     StageHelper.highDPI(this.stageBase, innerWidth, innerHeight);
     StageHelper.highDPI(this.stageOverlay, innerWidth, innerHeight);
     StageHelper.highDPI(this.stageCalcInside, innerWidth, innerHeight);
+
+    this.handleTick();
   }
 }

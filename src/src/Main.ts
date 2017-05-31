@@ -12,8 +12,6 @@ const NUM_PARTICLES: number = 1;
 window.addEventListener('DOMContentLoaded', () => {
   new Main(NUM_PARTICLES);
 
-
-
   const title  = document.createElement('img');
   title.src    = pngTitle;
   title.width  = 400;
@@ -21,11 +19,9 @@ window.addEventListener('DOMContentLoaded', () => {
   title.id     = 'mainTitle';
   document.body.appendChild(title);
 
-  if (title != null) {
-    requestAnimationFrame(() => {
-      title.classList.add('show');
-    });
-  }
+  requestAnimationFrame(() => {
+    title.classList.add('show');
+  });
 });
 
 

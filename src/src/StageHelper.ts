@@ -1,9 +1,9 @@
 export class StageHelper {
   static highDPI(stage: createjs.Stage, w: number, h: number) {
-    var backingRatio = StageHelper._getBackingRatio(stage);
-    var scale        = Math.max(1, (window.devicePixelRatio || 1) / backingRatio);
-    var canvas       = <HTMLCanvasElement> stage.canvas;
-    const style      = canvas.style;
+    const backingRatio = StageHelper._getBackingRatio(stage);
+    const scale        = Math.max(1, (window.devicePixelRatio || 1) / backingRatio);
+    const canvas       = <HTMLCanvasElement> stage.canvas;
+    const style        = canvas.style;
 
     //console.log(scale, window.devicePixelRatio, backingRatio)
 
@@ -16,7 +16,7 @@ export class StageHelper {
   }
 
   static _getBackingRatio(stage: createjs.Stage): number {
-    var ctx = <any>((<HTMLCanvasElement> stage.canvas).getContext('2d'));
+    const ctx = <any>((<HTMLCanvasElement> stage.canvas).getContext('2d'));
     return ctx.backingStorePixelRatio || ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || 1;
   }
 }
