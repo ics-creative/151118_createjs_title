@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": false,
+    "noUnusedLocals" : false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "lib": ["dom", "ES2017"],
+    "module": "ES2015",
+    "target": "es5"
+  }
+}

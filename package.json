@@ -1,17 +1,21 @@
 {
-  "name": "151118_createjs_title",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config ./webpack.config.js",
+    "serve": "lite-server && webpack --config ./webpack.config.js --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Yasunobu Ikeda",
+  "license": "MIT",
   "devDependencies": {
-    "del": "^2.2.0",
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-uglify": "^1.5.1"
+    "@types/easeljs": "^0.8.36",
+    "lite-server": "^2.3.0",
+    "shim-loader": "^1.0.1",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "createjs-easeljs": "^0.8.2"
   }
 }
