@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "out": "../js/home.js",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "files": [
+    "StageHelper.ts",
+    "CrossGraphicsContainer.ts",
+    "SpotLightContainer.ts",
+    "ParticleContainer.ts",
+    "Main.ts"
+  ]
+}

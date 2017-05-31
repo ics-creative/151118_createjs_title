@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "out": "tutorials/Main.js",
+    "sourceMap": true
+  },
+  "files": [
+    "../src/CrossGraphicsContainer.ts",
+    "../src/ParticleContainer.ts",
+    "../src/SpotLightContainer.ts",
+    "Main.ts"
+  ]
+}
