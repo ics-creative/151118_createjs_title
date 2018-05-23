@@ -7,7 +7,7 @@
 export class ParticleContainer extends createjs.Container {
   private _emitter: ParticleEmitter;
   private _emitterForMouse: ParticleEmitter;
-  private _bg: createjs.Shape;
+  private readonly _bg: createjs.Shape;
   private _time: number = 0;
 
   private _isMouseMoved: boolean = false;
@@ -58,10 +58,10 @@ export class ParticleContainer extends createjs.Container {
     this._emitterForMouse.update();
 
 
-    var hue    = Math.sin(-1 * Date.now() / 400 * Math.PI / 180) * 45 + 200;
+    const hue    = Math.sin(-1 * Date.now() / 400 * Math.PI / 180) * 45 + 200;
     // 背景
-    var color1 = createjs.Graphics.getHSL(hue, 100, 60);
-    var color2 = createjs.Graphics.getHSL(hue + 120, 100, 40);
+    const color1 = createjs.Graphics.getHSL(hue, 100, 60);
+    const color2 = createjs.Graphics.getHSL(hue + 120, 100, 40);
 
     this._bg.graphics
         .clear()
@@ -100,10 +100,10 @@ class Emitter {
    */
   public update(): void {
 
-    var dx: number  = this.latestX - this.x;
-    var dy: number  = this.latestY - this.y;
-    var d: number   = Math.sqrt(dx * dx + dy * dy) * 0.2;
-    var rad: number = Math.atan2(dy, dx);
+    const dx: number  = this.latestX - this.x;
+    const dy: number  = this.latestY - this.y;
+    const d: number   = Math.sqrt(dx * dx + dy * dy) * 0.2;
+    const rad: number = Math.atan2(dy, dx);
 
     this.vx += Math.cos(rad) * d;
     this.vy += Math.sin(rad) * d;
@@ -187,7 +187,7 @@ class ParticleEmitter extends Emitter {
    * @method
    */
   private getNewParticle(emitX: number, emitY: number) {
-    var p: Particle = this.fromPool();
+    const p: Particle = this.fromPool();
     p.resetParameters(emitX, emitY, this.startVx, this.startVy);
     this._particleActive.push(p);
     this.container.addChild(p);
@@ -301,7 +301,7 @@ class Particle extends createjs.Shape {
     this.compositeOperation = 'lighter';
 
     this.mouseEnabled = false;
-    var padding       = 2;
+    const padding       = 2;
     this.cache(-this.size - padding, -this.size - padding, this.size * 2 + padding * 2, this.size * 2 + padding * 2);
 
     this._destroy = true;

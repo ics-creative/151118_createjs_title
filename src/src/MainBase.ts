@@ -7,10 +7,10 @@ import {CrossGraphicsContainer} from './CrossGraphicsContainer';
  * @class project.Main
  */
 export class MainBase {
-  private stageBase: createjs.Stage;
+  private readonly stageBase: createjs.Stage;
   protected stageOverlay: createjs.Stage;
-  private stageCalcInside: createjs.Stage;
-  private spotLightContainer: SpotLightContainer;
+  private readonly stageCalcInside: createjs.Stage;
+  private readonly spotLightContainer: SpotLightContainer;
 
   /**
    * @constructor

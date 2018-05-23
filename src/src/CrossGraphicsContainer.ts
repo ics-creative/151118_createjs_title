@@ -20,7 +20,7 @@ declare class noise {
 export class CrossGraphicsContainer extends createjs.Shape {
 
   private time: number               = 0;
-  private vertexArr: any[][];
+  private readonly vertexArr: any[][];
   /** 線自体の個数です。 */
           private MAX_LINES: number  = 10;
   /** 線の水平方向の頂点数です。 */
@@ -72,8 +72,8 @@ export class CrossGraphicsContainer extends createjs.Shape {
   private drawWave(vertexArr: number[], strokeSize: number, timeOffset: number): void {
 
     const vertexNum = vertexArr.length - 1;
-    var stageW      = window.innerWidth;
-    var stageH      = window.innerHeight;
+    const stageW      = window.innerWidth;
+    const stageH      = window.innerHeight;
 
     // draw #1
     this.graphics.setStrokeStyle(strokeSize).beginStroke('white');
