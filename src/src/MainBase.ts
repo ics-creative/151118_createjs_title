@@ -1,7 +1,7 @@
-import {SpotLightContainer} from './SpotLightContainer';
-import {ParticleContainer} from './ParticleContainer';
-import {StageHelper} from './StageHelper';
-import {CrossGraphicsContainer} from './CrossGraphicsContainer';
+import { SpotLightContainer } from "./SpotLightContainer";
+import { ParticleContainer } from "./ParticleContainer";
+import { StageHelper } from "./StageHelper";
+import { CrossGraphicsContainer } from "./CrossGraphicsContainer";
 /**
  * パーティクルデモのメインクラスです。
  * @class project.Main
@@ -17,20 +17,18 @@ export class MainBase {
    */
   constructor(emitPerFrame: number) {
     // 初期設定
-    this.stageBase = new createjs.Stage('canvasBase');
-
+    this.stageBase = new createjs.Stage("canvasBase");
 
     // パーティクルサンプルを作成
     const sample = new ParticleContainer(emitPerFrame);
     this.stageBase.addChild(sample);
 
-
-    const stageOverlay  = new createjs.Stage('canvasOverlay');
+    const stageOverlay = new createjs.Stage("canvasOverlay");
     this.stageOverlay = stageOverlay;
 
     this.stageOverlay.nextStage = this.stageBase;
 
-    this.stageBase.on('stagemousemove', (ev) => {
+    this.stageBase.on("stagemousemove", ev => {
       sample.isMouseMoved = true;
     });
 
@@ -39,7 +37,7 @@ export class MainBase {
     stageOverlay.addChild(this.spotLightContainer);
 
     // 初期設定
-    this.stageCalcInside           = new createjs.Stage(document.createElement('canvas'));
+    this.stageCalcInside = new createjs.Stage(document.createElement("canvas"));
     this.stageCalcInside.autoClear = false;
 
     // パーティクルサンプルを作成
@@ -50,7 +48,7 @@ export class MainBase {
 
     // リサイズイベント
     this.handleResize();
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.handleResize();
     });
 
@@ -60,41 +58,38 @@ export class MainBase {
     }, 100);
 
     // Tickerを作成
-    if (matchMedia && matchMedia('(prefers-reduced-motion)').matches) {
+    if (matchMedia && matchMedia("(prefers-reduced-motion)").matches) {
       // 演出しない
       this.handleTick();
     } else {
       // 通常
-      createjs.Ticker.framerate  = 60;
+      createjs.Ticker.framerate = 60;
       createjs.Ticker.timingMode = createjs.Ticker.RAF;
-      createjs.Ticker.on('tick', this.handleTick, this);
+      createjs.Ticker.on("tick", this.handleTick, this);
     }
   }
 
-  protected buildUi(): void {
-
-  }
+  protected buildUi(): void {}
 
   /**
    * エンターフレームイベント
    */
   protected handleTick(): void {
-
     this.spotLightContainer.drawContents(innerWidth, innerHeight);
 
     // create residual image effect
     this.stageBase.update();
 
-    const canvas      = (<HTMLCanvasElement> this.stageCalcInside.canvas);
-    const context     = canvas.getContext('2d');
+    const canvas = <HTMLCanvasElement>this.stageCalcInside.canvas;
+    const context = canvas.getContext("2d");
     context.fillStyle = `rgba(0, 0, 0, ${0.35 * Math.random()})`;
     context.fillRect(0, 0, canvas.width, canvas.height);
     this.stageCalcInside.update();
 
     this.stageOverlay.update();
-    const canvasOverlay               = (<HTMLCanvasElement> this.stageOverlay.canvas);
-    const context2                    = canvasOverlay.getContext('2d');
-    context2.globalCompositeOperation = 'lighter';
+    const canvasOverlay = <HTMLCanvasElement>this.stageOverlay.canvas;
+    const context2 = canvasOverlay.getContext("2d");
+    context2.globalCompositeOperation = "lighter";
     context2.drawImage(canvas, 0, 0);
   }
 

@@ -1,28 +1,27 @@
 import "createjs-easeljs";
 import "noise";
-import {MainBase} from './MainBase';
+import { MainBase } from "./MainBase";
 
-import { pngTitle } from '../assets/title-assets/title.png';
+import { pngTitle } from "../assets/title-assets/title.png";
 
 /** 1フレーム間に発生させる Particle 数 */
 const NUM_PARTICLES: number = 1;
 
 // 起動コード
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   new Main(NUM_PARTICLES);
 
-  const title  = document.createElement('img');
-  title.src    = pngTitle;
-  title.width  = 400;
+  const title = document.createElement("img");
+  title.src = pngTitle;
+  title.width = 400;
   title.height = 160;
-  title.id     = 'mainTitle';
+  title.id = "mainTitle";
   document.body.appendChild(title);
 
   requestAnimationFrame(() => {
-    title.classList.add('show');
+    title.classList.add("show");
   });
 });
-
 
 /**
  * パーティクルデモのメインクラスです。
@@ -38,8 +37,7 @@ class Main extends MainBase {
     this.buildUi();
   }
 
-  protected buildUi(): void {
-  }
+  protected buildUi(): void {}
 
   /**
    * リサイズイベント
