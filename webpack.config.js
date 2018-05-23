@@ -1,5 +1,3 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
 const webpackShimConfig = {
   shim: {
     'easeljs': {
@@ -16,7 +14,6 @@ module.exports = {
   output   : {
     filename: './dist/home.js'
   },
-  devtool  : 'source-map',
   resolve  : {
     extensions: ['.ts', '.js'],
     alias     : {
@@ -26,7 +23,6 @@ module.exports = {
   },
   externals: {
   },
-  plugins  : [new UglifyJSPlugin()],
   module   : {
     rules: [
       {

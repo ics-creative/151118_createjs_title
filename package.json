@@ -1,19 +1,19 @@
 {
   "scripts": {
-    "build": "webpack --config ./webpack.config.js",
-    "serve": "lite-server && webpack --config ./webpack.config.js --watch"
+    "build": "webpack --config ./webpack.config.js --mode production",
+    "serve": "lite-server && webpack --config ./webpack.config.js --watch --mode development"
   },
   "author": "Yasunobu Ikeda",
   "license": "MIT",
   "devDependencies": {
-    "@types/easeljs": "^0.8.36",
+    "@types/easeljs": "^1.0.0",
     "lite-server": "^2.3.0",
     "shim-loader": "^1.0.1",
-    "ts-loader": "^2.1.0",
-    "typescript": "^2.3.4",
-    "uglifyjs-webpack-plugin": "^0.4.3",
-    "url-loader": "^0.5.8",
-    "webpack": "^2.6.1"
+    "ts-loader": "^4.3.0",
+    "typescript": "^2.8.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   },
   "dependencies": {
     "createjs-easeljs": "^0.8.2"

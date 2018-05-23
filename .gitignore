@@ -5,3 +5,5 @@ src/npm-debug.log
 .DS_Store
 Thumbs.db
 node_modules
+/yarn.lock
+/package-lock.json
