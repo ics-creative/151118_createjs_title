@@ -12,7 +12,7 @@ const webpackShimConfig = {
 module.exports = {
   entry    : './src/src/Main.ts',
   output   : {
-    filename: './dist/home.js'
+    filename: './home.js'
   },
   resolve  : {
     extensions: ['.ts', '.js'],
