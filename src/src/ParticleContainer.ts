@@ -233,8 +233,9 @@ class ParticleEmitter extends Emitter {
    * @method
    */
   private fromPool(): Particle {
-    if (this._particlePool.length > 0) return this._particlePool.shift();
-    else return new Particle();
+    if (this._particlePool.length > 0) {
+      return this._particlePool.shift() as Particle;
+    } else return new Particle();
   }
 
   /**

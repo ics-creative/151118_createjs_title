@@ -11,6 +11,9 @@ export class MainBase {
   protected stageOverlay: createjs.Stage;
   private readonly stageCalcInside: createjs.Stage;
   private readonly spotLightContainer: SpotLightContainer;
+  private _context: CanvasRenderingContext2D;
+  private _context2: CanvasRenderingContext2D;
+  private _canvas: HTMLCanvasElement;
 
   /**
    * @constructor
@@ -43,6 +46,20 @@ export class MainBase {
     // パーティクルサンプルを作成
     const crossGraphicsContainer = new CrossGraphicsContainer();
     this.stageCalcInside.addChild(crossGraphicsContainer);
+
+    const canvas = this.stageCalcInside.canvas as HTMLCanvasElement;
+    this._canvas = canvas;
+    const context = canvas.getContext("2d");
+    if (!context) {
+      throw new Error();
+    }
+    this._context = context;
+    const canvasOverlay = this.stageOverlay.canvas as HTMLCanvasElement;
+    const context2 = canvasOverlay.getContext("2d");
+    if (!context2) {
+      throw new Error();
+    }
+    this._context2 = context2;
 
     this.buildUi();
 
@@ -80,17 +97,14 @@ export class MainBase {
     // create residual image effect
     this.stageBase.update();
 
-    const canvas = <HTMLCanvasElement>this.stageCalcInside.canvas;
-    const context = canvas.getContext("2d");
-    context.fillStyle = `rgba(0, 0, 0, ${0.35 * Math.random()})`;
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    const canvas = this._canvas;
+    this._context.fillStyle = `rgba(0, 0, 0, ${0.35 * Math.random()})`;
+    this._context.fillRect(0, 0, canvas.width, canvas.height);
     this.stageCalcInside.update();
 
     this.stageOverlay.update();
-    const canvasOverlay = <HTMLCanvasElement>this.stageOverlay.canvas;
-    const context2 = canvasOverlay.getContext("2d");
-    context2.globalCompositeOperation = "lighter";
-    context2.drawImage(canvas, 0, 0);
+    this._context2.globalCompositeOperation = "lighter";
+    this._context2.drawImage(canvas, 0, 0);
   }
 
   /**
