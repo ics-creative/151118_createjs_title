@@ -94,7 +94,7 @@ export class CrossGraphicsContainer extends createjs.Shape {
     for (let i = 0; i <= vertexNum; i++) {
       points.push({
         x: (stageW * (i / vertexNum)) >> 0,
-        y: vertexArr[i] + BASE_Y
+        y: vertexArr[i] + BASE_Y,
       });
     }
     points.push({ x: stageW + 200, y: BASE_Y });

@@ -41,8 +41,8 @@ export class ParticleContainer extends createjs.Container {
     if (this._tickCount % 2 == 0) {
       this._emitter.emit(
         window.innerWidth * Math.random(),
-        window.innerHeight / 5 * (Math.random() - 0.5) +
-          window.innerHeight * 6 / 10
+        (window.innerHeight / 5) * (Math.random() - 0.5) +
+          (window.innerHeight * 6) / 10
       );
     }
 
@@ -59,7 +59,8 @@ export class ParticleContainer extends createjs.Container {
 
     this._emitterForMouse.update();
 
-    const hue = Math.sin(-1 * Date.now() / 400 * Math.PI / 180) * 45 + 200;
+    const hue =
+      Math.sin((((-1 * Date.now()) / 400) * Math.PI) / 180) * 45 + 200;
     // 背景
     const color1 = createjs.Graphics.getHSL(hue, 100, 60);
     const color2 = createjs.Graphics.getHSL(hue + 120, 100, 40);
@@ -372,7 +373,7 @@ class Particle extends createjs.Shape {
     this._count++;
 
     const maxD: number = 1 - this._count / this.life;
-    const sizeNew: number = 1 - this._count / this.life * this.vSize;
+    const sizeNew: number = 1 - (this._count / this.life) * this.vSize;
 
     this.alpha = Math.random() * 0.3 + this.baseAlpha * maxD;
     this.scaleX = this.scaleY = sizeNew;

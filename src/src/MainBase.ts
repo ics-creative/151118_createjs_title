@@ -28,7 +28,7 @@ export class MainBase {
 
     this.stageOverlay.nextStage = this.stageBase;
 
-    this.stageBase.on("stagemousemove", ev => {
+    this.stageBase.on("stagemousemove", (ev) => {
       sample.isMouseMoved = true;
     });
 
