@@ -1,22 +1,22 @@
 {
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --mode production",
-    "serve": "lite-server && webpack --config ./webpack.config.js --watch --mode development",
-    "format": "prettier --write 'src/src/**/*.ts'"
+    "build": "webpack --mode production",
+    "serve": "webpack-dev-server --mode development",
+    "format": "prettier --write 'src/src/**/*.ts' webpack.config.js"
   },
   "author": "Yasunobu Ikeda",
   "license": "MIT",
   "private": true,
   "devDependencies": {
     "@types/easeljs": "1.0.0",
-    "lite-server": "2.3.0",
     "prettier": "2.2.1",
     "shim-loader": "1.0.1",
     "ts-loader": "8.1.0",
     "typescript": "4.2.4",
     "url-loader": "4.1.1",
     "webpack": "4.46.0",
-    "webpack-cli": "3.3.12"
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
     "createjs-easeljs": "0.8.2"
