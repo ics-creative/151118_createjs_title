@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
-    "strictNullChecks": true,
-    "noUnusedLocals": false,
-    "noImplicitThis": false,
-    "alwaysStrict": false,
+    "strict": true,
     "sourceMap": true,
-    "noImplicitAny": true,
     "lib": [
       "dom",
-      "es2018"
+      "es2020"
     ],
     "module": "es2015",
     "target": "es5",

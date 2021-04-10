@@ -46,9 +46,8 @@ export class CrossGraphicsContainer extends createjs.Shape {
 
   /**
    * エンターフレームイベント
-   * @param event
    */
-  private handleTick(event: createjs.Event): void {
+  private handleTick(event: Object): void {
     this.time = Date.now() / 5000;
 
     this.graphics.clear();

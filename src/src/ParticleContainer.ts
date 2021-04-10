@@ -36,7 +36,7 @@ export class ParticleContainer extends createjs.Container {
    * エンターフレームイベント
    * @param event
    */
-  private enterFrameHandler(event: createjs.Event): void {
+  private enterFrameHandler(event: Object): void {
     this._tickCount = this._tickCount + 1;
     if (this._tickCount % 2 == 0) {
       this._emitter.emit(
@@ -252,14 +252,14 @@ class ParticleEmitter extends Emitter {
  * @class demo.Particle
  */
 class Particle extends createjs.Shape {
-  public vx: number;
-  public vy: number;
-  public life: number;
-  public size: number;
-  public vSize: number;
-  public baseAlpha: number;
+  public vx: number = 0;
+  public vy: number = 0;
+  public life: number = 0;
+  public size: number = 0;
+  public vSize: number = 0;
+  public baseAlpha: number = 0;
 
-  private _count: number;
+  private _count: number = 0;
   private _destroy: boolean;
   private MAX_SIZE: number = 128;
 

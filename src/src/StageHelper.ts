@@ -3,14 +3,9 @@ export class StageHelper {
     const backingRatio = StageHelper._getBackingRatio(stage);
     const scale = Math.max(1, (window.devicePixelRatio || 1) / backingRatio);
     const canvas = <HTMLCanvasElement>stage.canvas;
-    const style = canvas.style;
-
-    //console.log(scale, window.devicePixelRatio, backingRatio)
 
     canvas.width = w * scale;
     canvas.height = h * scale;
-    //style.width = w + "px";
-    //style.height = h + "px";
     stage.scaleX = stage.scaleY = scale;
     return this;
   }
