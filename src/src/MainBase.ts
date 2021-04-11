@@ -89,13 +89,16 @@ export class MainBase {
     }
 
     const update = () => {
+      const warn = document.querySelector<HTMLDivElement>(".reduceMotionWarn");
       // Tickerを作成
       if (mediaQuery.matches) {
         // 演出しない
         this.handleTick();
         isNeedUpdate = false;
+        warn?.removeAttribute("hidden");
       } else {
         isNeedUpdate = true;
+        warn?.setAttribute("hidden", "true");
       }
     };
 
