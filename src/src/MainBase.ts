@@ -69,21 +69,39 @@ export class MainBase {
       this.handleResize();
     });
 
-    // iframe埋め込み & スマホ対策
-    setTimeout(() => {
-      this.handleResize();
-    }, 100);
+    // 通常
+    createjs.Ticker.framerate = 60;
+    createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
+    let isNeedUpdate = true;
+    const updateTick = () => {
+      if (isNeedUpdate) {
+        this.handleTick();
+      }
+    };
+    createjs.Ticker.on("tick", updateTick);
 
-    // Tickerを作成
-    if (matchMedia && matchMedia("(prefers-reduced-motion)").matches) {
-      // 演出しない
-      this.handleTick();
-    } else {
-      // 通常
-      createjs.Ticker.framerate = 60;
-      createjs.Ticker.timingMode = createjs.Ticker.RAF;
-      createjs.Ticker.on("tick", this.handleTick, this);
+    const mediaQuery =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion)");
+
+    // 未対応ブラウザでは処理をはずす
+    if (!mediaQuery) {
+      return;
     }
+
+    const update = () => {
+      // Tickerを作成
+      if (mediaQuery.matches) {
+        // 演出しない
+        this.handleTick();
+        isNeedUpdate = false;
+      } else {
+        isNeedUpdate = true;
+      }
+    };
+
+    mediaQuery.addEventListener("change", update);
+
+    update();
   }
 
   protected buildUi(): void {}
